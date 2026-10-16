@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/gateway/">
+    <Project Path="gateway/Gateway/Gateway.csproj" />
+  </Folder>
+  <Folder Name="/services/" />
+  <Folder Name="/services/feedback/">
+    <Project Path="services/feedback/Feedback.Api.Tests/Feedback.Api.Tests.csproj" />
+    <Project Path="services/feedback/Feedback.Api/Feedback.Api.csproj" />
+  </Folder>
+  <Folder Name="/services/identity/">
+    <Project Path="services/identity/Identity.Api.Tests/Identity.Api.Tests.csproj" />
+    <Project Path="services/identity/Identity.Api/Identity.Api.csproj" />
+  </Folder>
+  <Folder Name="/services/reporting/">
+    <Project Path="services/reporting/Reporting.Api.Tests/Reporting.Api.Tests.csproj" />
+    <Project Path="services/reporting/Reporting.Api/Reporting.Api.csproj" />
+  </Folder>
+  <Folder Name="/shared/">
+    <Project Path="shared/CustomerFeedback.BuildingBlocks/CustomerFeedback.BuildingBlocks.csproj" />
+  </Folder>
+</Solution>

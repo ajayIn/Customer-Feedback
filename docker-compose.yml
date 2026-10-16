@@ -1,0 +1,90 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:-Your_password123}"
+    ports:
+      - "1433:1433"
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  identity:
+    build:
+      context: .
+      dockerfile: backend/services/identity/Identity.Api/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: "Server=sqlserver;Database=CF_Identity;User Id=sa;Password=${MSSQL_SA_PASSWORD:-Your_password123};TrustServerCertificate=True"
+      Jwt__SigningKey: "${JWT_SIGNING_KEY:-DEV-ONLY-change-me-to-a-32-byte-plus-secret!!}"
+      Seed__ManagerEmail: "${SEED_MANAGER_EMAIL:-manager@store.local}"
+      Seed__ManagerPassword: "${SEED_MANAGER_PASSWORD:-ChangeMe!123}"
+    depends_on:
+      - sqlserver
+    ports:
+      - "5101:8080"
+
+  feedback:
+    build:
+      context: .
+      dockerfile: backend/services/feedback/Feedback.Api/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: "Server=sqlserver;Database=CF_Feedback;User Id=sa;Password=${MSSQL_SA_PASSWORD:-Your_password123};TrustServerCertificate=True"
+      Jwt__SigningKey: "${JWT_SIGNING_KEY:-DEV-ONLY-change-me-to-a-32-byte-plus-secret!!}"
+      RabbitMQ__Host: rabbitmq
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    ports:
+      - "5102:8080"
+
+  reporting:
+    build:
+      context: .
+      dockerfile: backend/services/reporting/Reporting.Api/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: "Server=sqlserver;Database=CF_Reporting;User Id=sa;Password=${MSSQL_SA_PASSWORD:-Your_password123};TrustServerCertificate=True"
+      Jwt__SigningKey: "${JWT_SIGNING_KEY:-DEV-ONLY-change-me-to-a-32-byte-plus-secret!!}"
+      RabbitMQ__Host: rabbitmq
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    ports:
+      - "5103:8080"
+
+  gateway:
+    build:
+      context: .
+      dockerfile: backend/gateway/Gateway/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ReverseProxy__Clusters__identity__Destinations__primary__Address: "http://identity:8080"
+      ReverseProxy__Clusters__feedback__Destinations__primary__Address: "http://feedback:8080"
+      ReverseProxy__Clusters__reporting__Destinations__primary__Address: "http://reporting:8080"
+    depends_on:
+      - identity
+      - feedback
+      - reporting
+    ports:
+      - "5000:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      VITE_API_BASE_URL: "http://localhost:5000"
+    ports:
+      - "5173:80"
+    depends_on:
+      - gateway

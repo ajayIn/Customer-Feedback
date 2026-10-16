@@ -1,0 +1,272 @@
+openapi: 3.0.3
+info:
+  title: Feedback API
+  version: 1.0.0
+servers:
+  - url: /api/feedback
+paths:
+  /:
+    post:
+      summary: Submit feedback
+      operationId: createFeedback
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFeedbackRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+        '400':
+          $ref: '#/components/responses/Problem'
+        '401':
+          $ref: '#/components/responses/Problem'
+        '403':
+          $ref: '#/components/responses/Problem'
+    get:
+      summary: Manager list
+      operationId: listFeedback
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+        - name: storeId
+          in: query
+          schema: { type: string, format: uuid }
+        - name: category
+          in: query
+          schema:
+            $ref: '#/components/schemas/Category'
+        - name: status
+          in: query
+          schema:
+            $ref: '#/components/schemas/FeedbackStatus'
+        - name: from
+          in: query
+          schema: { type: string, format: date }
+        - name: to
+          in: query
+          schema: { type: string, format: date }
+      responses:
+        '200':
+          description: Paged list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedbackPage'
+        '401':
+          $ref: '#/components/responses/Problem'
+        '403':
+          $ref: '#/components/responses/Problem'
+  /mine:
+    get:
+      summary: My submissions
+      operationId: listMyFeedback
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          description: Paged list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedbackPage'
+        '401':
+          $ref: '#/components/responses/Problem'
+        '403':
+          $ref: '#/components/responses/Problem'
+  /{id}/category:
+    patch:
+      summary: Recategorize
+      operationId: patchCategory
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchCategoryRequest'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+        '400':
+          $ref: '#/components/responses/Problem'
+        '404':
+          $ref: '#/components/responses/Problem'
+  /{id}/status:
+    patch:
+      summary: Change status
+      operationId: patchStatus
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchStatusRequest'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+        '400':
+          $ref: '#/components/responses/Problem'
+        '404':
+          $ref: '#/components/responses/Problem'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    page:
+      name: page
+      in: query
+      schema: { type: integer, minimum: 1, default: 1 }
+    pageSize:
+      name: pageSize
+      in: query
+      schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+  responses:
+    Problem:
+      description: RFC 7807 Problem Details
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+  schemas:
+    Category:
+      type: string
+      enum: [Service, Product, Facilities, Other]
+    FeedbackStatus:
+      type: string
+      enum: [New, Reviewed, Actioned]
+    CreateFeedbackRequest:
+      type: object
+      required:
+        - storeId
+        - visitDate
+        - overall
+        - cleanliness
+        - staff
+        - waitTime
+        - productAvailability
+        - npsScore
+        - category
+      properties:
+        storeId: { type: string, format: uuid }
+        visitDate: { type: string, format: date }
+        overall: { type: integer, minimum: 1, maximum: 5 }
+        cleanliness: { type: integer, minimum: 1, maximum: 5 }
+        staff: { type: integer, minimum: 1, maximum: 5 }
+        waitTime: { type: integer, minimum: 1, maximum: 5 }
+        productAvailability: { type: integer, minimum: 1, maximum: 5 }
+        npsScore: { type: integer, minimum: 0, maximum: 10 }
+        category:
+          $ref: '#/components/schemas/Category'
+        comments: { type: string, maxLength: 2000 }
+        contactEmail: { type: string, format: email, nullable: true }
+        isAnonymous: { type: boolean, default: false }
+    PatchCategoryRequest:
+      type: object
+      required: [category]
+      properties:
+        category:
+          $ref: '#/components/schemas/Category'
+    PatchStatusRequest:
+      type: object
+      required: [status]
+      properties:
+        status:
+          $ref: '#/components/schemas/FeedbackStatus'
+    Feedback:
+      type: object
+      required:
+        - id
+        - storeId
+        - visitDate
+        - overall
+        - cleanliness
+        - staff
+        - waitTime
+        - productAvailability
+        - npsScore
+        - category
+        - status
+        - isAnonymous
+        - createdAt
+        - updatedAt
+      properties:
+        id: { type: string, format: uuid }
+        storeId: { type: string, format: uuid }
+        customerId: { type: string, format: uuid, nullable: true }
+        visitDate: { type: string, format: date }
+        overall: { type: integer }
+        cleanliness: { type: integer }
+        staff: { type: integer }
+        waitTime: { type: integer }
+        productAvailability: { type: integer }
+        npsScore: { type: integer }
+        category:
+          $ref: '#/components/schemas/Category'
+        comments: { type: string, nullable: true }
+        contactEmail: { type: string, nullable: true }
+        isAnonymous: { type: boolean }
+        status:
+          $ref: '#/components/schemas/FeedbackStatus'
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+    FeedbackPage:
+      type: object
+      required: [items, page, pageSize, totalCount]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Feedback'
+        page: { type: integer }
+        pageSize: { type: integer }
+        totalCount: { type: integer }
+    ProblemDetails:
+      type: object
+      properties:
+        type: { type: string }
+        title: { type: string }
+        status: { type: integer }
+        detail: { type: string }
+        traceId: { type: string }
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items: { type: string }

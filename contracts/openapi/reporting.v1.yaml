@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: Reporting API
+  version: 1.0.0
+servers:
+  - url: /api/reports
+paths:
+  /summary:
+    get:
+      summary: Manager landing-page KPIs
+      operationId: getSummary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: storeId
+          in: query
+          schema: { type: string, format: uuid }
+        - name: from
+          in: query
+          schema: { type: string, format: date }
+        - name: to
+          in: query
+          schema: { type: string, format: date }
+      responses:
+        '200':
+          description: Summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportSummary'
+        '401':
+          $ref: '#/components/responses/Problem'
+        '403':
+          $ref: '#/components/responses/Problem'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    Problem:
+      description: RFC 7807 Problem Details
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+  schemas:
+    ReportSummary:
+      type: object
+      required: [totalCount, averageOverall, averageNps, byCategory, trend, statusCounts]
+      properties:
+        totalCount: { type: integer }
+        averageOverall: { type: number, format: double }
+        averageNps: { type: number, format: double }
+        byCategory:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoryBreakdown'
+        trend:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrendPoint'
+        statusCounts:
+          $ref: '#/components/schemas/StatusCounts'
+    CategoryBreakdown:
+      type: object
+      required: [category, count, averageOverall]
+      properties:
+        category: { type: string, enum: [Service, Product, Facilities, Other] }
+        count: { type: integer }
+        averageOverall: { type: number, format: double }
+    TrendPoint:
+      type: object
+      required: [period, count, averageOverall, averageNps]
+      properties:
+        period: { type: string }
+        count: { type: integer }
+        averageOverall: { type: number, format: double }
+        averageNps: { type: number, format: double }
+    StatusCounts:
+      type: object
+      required: [new, reviewed, actioned]
+      properties:
+        new: { type: integer }
+        reviewed: { type: integer }
+        actioned: { type: integer }
+    ProblemDetails:
+      type: object
+      properties:
+        type: { type: string }
+        title: { type: string }
+        status: { type: integer }
+        detail: { type: string }
+        traceId: { type: string }
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items: { type: string }

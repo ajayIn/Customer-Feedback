@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://customerfeedback.local/events/feedback-submitted.v1.json",
+  "title": "FeedbackSubmitted",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "feedbackId",
+    "storeId",
+    "visitDate",
+    "overall",
+    "cleanliness",
+    "staff",
+    "waitTime",
+    "productAvailability",
+    "npsScore",
+    "category",
+    "status",
+    "createdAt"
+  ],
+  "properties": {
+    "feedbackId": { "type": "string", "format": "uuid" },
+    "storeId": { "type": "string", "format": "uuid" },
+    "customerId": { "type": ["string", "null"], "format": "uuid" },
+    "visitDate": { "type": "string", "format": "date" },
+    "overall": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "cleanliness": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "staff": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "waitTime": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "productAvailability": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "npsScore": { "type": "integer", "minimum": 0, "maximum": 10 },
+    "category": { "type": "string", "enum": ["Service", "Product", "Facilities", "Other"] },
+    "status": { "type": "string", "enum": ["New", "Reviewed", "Actioned"] },
+    "createdAt": { "type": "string", "format": "date-time" }
+  }
+}

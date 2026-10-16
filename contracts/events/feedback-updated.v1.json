@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://customerfeedback.local/events/feedback-updated.v1.json",
+  "title": "FeedbackUpdated",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["feedbackId", "category", "status", "updatedAt"],
+  "properties": {
+    "feedbackId": { "type": "string", "format": "uuid" },
+    "category": { "type": "string", "enum": ["Service", "Product", "Facilities", "Other"] },
+    "status": { "type": "string", "enum": ["New", "Reviewed", "Actioned"] },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}
