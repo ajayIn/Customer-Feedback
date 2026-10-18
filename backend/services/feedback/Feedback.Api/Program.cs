@@ -78,7 +78,7 @@ api.MapPatch("/{id:guid}/status", async (
     .RequireAuthorization("StoreManager");
 
 app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
-app.Run();
+app.RunWithSerilog();
 
 static Guid RequireUserId(HttpContext http)
 {

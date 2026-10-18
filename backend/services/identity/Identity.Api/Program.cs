@@ -59,6 +59,6 @@ api.MapGet("/me", async (
 }).RequireAuthorization();
 
 app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
-app.Run();
+app.RunWithSerilog();
 
 public partial class Program;

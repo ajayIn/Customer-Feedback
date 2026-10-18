@@ -28,6 +28,15 @@ public static class ExceptionHandlingExtensions
                 {
                     case AppException appEx:
                         status = appEx.Status;
+                        if (status >= 500)
+                        {
+                            log?.LogError(appEx, "Application error {Status} {TraceId}", status, traceId);
+                        }
+                        else
+                        {
+                            log?.LogWarning("Application error {Status} {TraceId}: {Detail}", status, traceId, appEx.Message);
+                        }
+
                         body = new
                         {
                             type = $"https://httpstatuses.com/{appEx.Status}",
@@ -39,6 +48,7 @@ public static class ExceptionHandlingExtensions
                         };
                         break;
                     case ValidationException fv:
+                        log?.LogWarning("Validation failed {TraceId}", traceId);
                         status = 400;
                         var errors = fv.Errors
                             .GroupBy(e => e.PropertyName)

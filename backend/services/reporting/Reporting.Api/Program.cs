@@ -31,6 +31,6 @@ app.MapGet("/api/reports/summary", async (
     .RequireAuthorization("StoreManager");
 
 app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
-app.Run();
+app.RunWithSerilog();
 
 public partial class Program;

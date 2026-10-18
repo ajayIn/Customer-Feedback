@@ -24,4 +24,4 @@ app.UseCors();
 app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
 app.MapReverseProxy();
 
-app.Run();
+app.RunWithSerilog();

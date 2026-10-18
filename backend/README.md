@@ -44,6 +44,23 @@ dotnet test backend/CustomerFeedback.slnx
 
 Test projects sit next to each API: `Identity.Api.Tests`, `Feedback.Api.Tests`, `Reporting.Api.Tests`.
 
+## Logging
+
+All hosts call `AddSerilogLogging()` and `UseCustomerFeedbackPipeline()` from `CustomerFeedback.BuildingBlocks`. Logs are written as **compact JSON** (one object per line) with `Service`, `Environment`, and `TraceId` on each request:
+
+| Sink | Location |
+| --- | --- |
+| Console | stdout (PowerShell window, `docker compose logs`, etc.) |
+| File | `{ContentRoot}/logs/{ApplicationName}-YYYYMMDD.json` (daily rolling) |
+
+Example when you run Identity locally: `backend/services/identity/Identity.Api/logs/Identity.Api-20261018.json`.
+
+Configure the folder with `Logging:File:Directory` (default `logs`) and retention with `Logging:File:RetainedFileCountLimit` (default `14` days). Use an absolute path for `Logging:File:Directory` to write outside the project folder. Log files are gitignored.
+
+Development uses `Serilog:MinimumLevel:Default` = `Debug` in `appsettings.Development.json`. Override levels with the `Serilog` section in `appsettings` or environment variables (for example `Serilog__MinimumLevel__Default=Warning`).
+
+Shutdown calls `Log.CloseAndFlush()` via `RunWithSerilog()`.
+
 ## Configuration
 
 `appsettings.json` plus `appsettings.Development.json`, environment variables, and user-secrets. Do not commit connection strings, JWT signing keys, or seed passwords beyond the local Development defaults. Docker overrides are listed in [docker-compose.yml](../docker-compose.yml) and [.env.example](../.env.example).

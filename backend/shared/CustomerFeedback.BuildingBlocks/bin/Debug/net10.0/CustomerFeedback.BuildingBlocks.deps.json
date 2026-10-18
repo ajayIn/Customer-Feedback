@@ -11,7 +11,8 @@
           "FluentValidation": "12.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0",
           "Serilog.AspNetCore": "9.0.0",
-          "Serilog.Formatting.Compact": "3.0.0"
+          "Serilog.Formatting.Compact": "3.0.0",
+          "Serilog.Sinks.File": "6.0.0"
         },
         "runtime": {
           "CustomerFeedback.BuildingBlocks.dll": {}

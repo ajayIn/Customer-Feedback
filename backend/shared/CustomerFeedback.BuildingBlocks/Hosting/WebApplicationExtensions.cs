@@ -1,6 +1,6 @@
 using CustomerFeedback.BuildingBlocks.Errors;
+using CustomerFeedback.BuildingBlocks.Logging;
 using Microsoft.AspNetCore.Builder;
-using Serilog;
 
 namespace CustomerFeedback.BuildingBlocks.Hosting;
 
@@ -8,8 +8,9 @@ public static class WebApplicationExtensions
 {
     public static WebApplication UseCustomerFeedbackPipeline(this WebApplication app)
     {
+        app.UseSerilogRequestContext();
         app.UseProblemDetailsExceptionHandler();
-        app.UseSerilogRequestLogging();
+        app.UseStructuredRequestLogging();
         return app;
     }
 }
