@@ -521,3 +521,10 @@ D:\Customer Feedback\backend\services\reporting\Reporting.Api.Tests\bin\Debug\ne
 D:\Customer Feedback\backend\services\reporting\Reporting.Api.Tests\bin\Debug\net10.0\Reporting.Api.dll
 D:\Customer Feedback\backend\services\reporting\Reporting.Api.Tests\bin\Debug\net10.0\Reporting.Api.pdb
 D:\Customer Feedback\backend\services\reporting\Reporting.Api.Tests\bin\Debug\net10.0\CustomerFeedback.BuildingBlocks.pdb
+D:\Customer Feedback\backend\services\reporting\Reporting.Api.Tests\obj\Debug\net10.0\Reporting.Api.Tests.sourcelink.json
+D:\Customer Feedback\backend\services\reporting\Reporting.Api.Tests\bin\Debug\net10.0\Reporting.Application.dll
+D:\Customer Feedback\backend\services\reporting\Reporting.Api.Tests\bin\Debug\net10.0\Reporting.Domain.dll
+D:\Customer Feedback\backend\services\reporting\Reporting.Api.Tests\bin\Debug\net10.0\Reporting.Infrastructure.dll
+D:\Customer Feedback\backend\services\reporting\Reporting.Api.Tests\bin\Debug\net10.0\Reporting.Application.pdb
+D:\Customer Feedback\backend\services\reporting\Reporting.Api.Tests\bin\Debug\net10.0\Reporting.Domain.pdb
+D:\Customer Feedback\backend\services\reporting\Reporting.Api.Tests\bin\Debug\net10.0\Reporting.Infrastructure.pdb

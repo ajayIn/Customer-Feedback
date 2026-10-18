@@ -866,7 +866,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ajayg\\.nuget\\packages\\": {}
+    "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget": {}
   },
   "project": {
     "version": "1.0.0",
@@ -874,7 +874,7 @@
       "projectUniqueName": "D:\\Customer Feedback\\backend\\gateway\\Gateway\\Gateway.csproj",
       "projectName": "Gateway",
       "projectPath": "D:\\Customer Feedback\\backend\\gateway\\Gateway\\Gateway.csproj",
-      "packagesPath": "C:\\Users\\ajayg\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget",
       "outputPath": "D:\\Customer Feedback\\backend\\gateway\\Gateway\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [

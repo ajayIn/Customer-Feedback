@@ -1,4 +1,7 @@
 {
   "CustomerFeedback.BuildingBlocks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Customer Feedback\\backend\\shared\\CustomerFeedback.BuildingBlocks",
-  "Identity.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Customer Feedback\\backend\\services\\identity\\Identity.Api"
+  "Identity.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Customer Feedback\\backend\\services\\identity\\Identity.Api",
+  "Identity.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Customer Feedback\\backend\\services\\identity\\Identity.Application",
+  "Identity.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Customer Feedback\\backend\\services\\identity\\Identity.Domain",
+  "Identity.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Customer Feedback\\backend\\services\\identity\\Identity.Infrastructure"
 }

@@ -1,6 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
-using Identity.Api.Contracts;
+using Identity.Application.Contracts;
 using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace Identity.Api.Tests;

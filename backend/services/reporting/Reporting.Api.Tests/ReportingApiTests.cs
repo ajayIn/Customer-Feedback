@@ -8,7 +8,7 @@ using MassTransit;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Reporting.Api.Contracts;
+using Reporting.Application.Contracts;
 
 namespace Reporting.Api.Tests;
 

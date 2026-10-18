@@ -15,6 +15,16 @@ See also: [Architecture](architecture.md) | [HLD](hld.md)
 
 Gateway forwards paths **unchanged** to downstream clusters (see [`backend/gateway/Gateway/appsettings.json`](../backend/gateway/Gateway/appsettings.json)).
 
+### 1.1 Project layout
+
+Each service folder contains `*.Domain`, `*.Application`, `*.Infrastructure`, and `*.Api`. The running process is still the Api project. Handlers live under `Application/UseCases`. Persistence and messaging adapters live under `Infrastructure`. See [Architecture — Clean Architecture inside each service](architecture.md#clean-architecture-inside-each-service).
+
+| Service | Handlers | Persistence |
+| --- | --- | --- |
+| Identity | [`AuthHandlers.cs`](../backend/services/identity/Identity.Application/UseCases/AuthHandlers.cs) | [`IdentityDbContext.cs`](../backend/services/identity/Identity.Infrastructure/Persistence/IdentityDbContext.cs) |
+| Feedback | [`CreateFeedbackHandler.cs`](../backend/services/feedback/Feedback.Application/UseCases/CreateFeedbackHandler.cs) and the list/update handlers beside it | [`FeedbackDbContext.cs`](../backend/services/feedback/Feedback.Infrastructure/Persistence/FeedbackDbContext.cs) |
+| Reporting | [`ReportHandlers.cs`](../backend/services/reporting/Reporting.Application/UseCases/ReportHandlers.cs) | [`ReportingDbContext.cs`](../backend/services/reporting/Reporting.Infrastructure/Persistence/ReportingDbContext.cs) |
+
 ## 2. Authentication and authorization
 
 ### 2.1 JWT claims
@@ -27,7 +37,7 @@ Gateway forwards paths **unchanged** to downstream clusters (see [`backend/gatew
 
 Configuration keys: `Jwt:Issuer`, `Jwt:Audience`, `Jwt:SigningKey`, `Jwt:AccessTokenMinutes`, `Jwt:RefreshTokenDays`.
 
-Implementation: [`JwtExtensions.cs`](../backend/shared/CustomerFeedback.BuildingBlocks/Auth/JwtExtensions.cs), [`TokenService.cs`](../backend/services/identity/Identity.Api/Services/TokenService.cs).
+Implementation: [`JwtExtensions.cs`](../backend/shared/CustomerFeedback.BuildingBlocks/Auth/JwtExtensions.cs), [`TokenIssuer.cs`](../backend/services/identity/Identity.Infrastructure/Auth/TokenIssuer.cs) (`ITokenIssuer`). Role name constants live in [`Roles.cs`](../backend/services/identity/Identity.Domain/Roles.cs).
 
 ### 2.2 Refresh token storage
 
@@ -43,7 +53,7 @@ Implementation: [`JwtExtensions.cs`](../backend/shared/CustomerFeedback.Building
 
 ### 2.4 Seeded store manager
 
-On startup, `IdentitySeeder` creates roles and optional manager from:
+On startup, [`IdentitySeeder`](../backend/services/identity/Identity.Infrastructure/IdentitySeeder.cs) creates roles and optional manager from:
 
 - `Seed:ManagerEmail`
 - `Seed:ManagerPassword`
@@ -88,7 +98,7 @@ Computed in-memory from `FeedbackFacts` rows (v1); no cross-database queries.
 
 ### 4.1 Identity (`CF_Identity`)
 
-**ApplicationUser** (extends `IdentityUser<Guid>`)
+**ApplicationUser** (extends `IdentityUser<Guid>`, defined in Identity infrastructure)
 
 | Column | Type | Notes |
 | --- | --- | --- |
@@ -127,7 +137,9 @@ Roles: `Customer`, `StoreManager` (ASP.NET Identity roles).
 | Status | string(32) | Yes (`New`, `Reviewed`, `Actioned`) |
 | CreatedAt, UpdatedAt | datetimeoffset | |
 
-DbContext: [`FeedbackDbContext.cs`](../backend/services/feedback/Feedback.Api/Data/FeedbackDbContext.cs).
+Entity: [`FeedbackEntry.cs`](../backend/services/feedback/Feedback.Domain/FeedbackEntry.cs). Category and status changes go through `ChangeCategory` and `ChangeStatus`.
+
+DbContext: [`FeedbackDbContext.cs`](../backend/services/feedback/Feedback.Infrastructure/Persistence/FeedbackDbContext.cs).
 
 ### 4.3 Reporting (`CF_Reporting`)
 
@@ -142,7 +154,9 @@ DbContext: [`FeedbackDbContext.cs`](../backend/services/feedback/Feedback.Api/Da
 | Category, Status | string | Breakdown |
 | CreatedAt, UpdatedAt | datetimeoffset | |
 
-DbContext: [`ReportingDbContext.cs`](../backend/services/reporting/Reporting.Api/Data/ReportingDbContext.cs).
+Entity: [`FeedbackFact.cs`](../backend/services/reporting/Reporting.Domain/FeedbackFact.cs).
+
+DbContext: [`ReportingDbContext.cs`](../backend/services/reporting/Reporting.Infrastructure/Persistence/ReportingDbContext.cs).
 
 ### 4.4 ER diagram (logical)
 
@@ -184,15 +198,16 @@ JSON schemas: [`contracts/events/`](../contracts/events/).
 
 | Component | Role |
 | --- | --- |
-| Feedback.Api | `IPublishEndpoint.Publish` on create/update |
-| Reporting.Api | `FeedbackSubmittedConsumer`, `FeedbackUpdatedConsumer` |
+| Feedback application | Create and update handlers call `IFeedbackEventPublisher` |
+| Feedback infrastructure | [`FeedbackEventPublisher`](../backend/services/feedback/Feedback.Infrastructure/Messaging/FeedbackEventPublisher.cs) publishes via MassTransit |
+| Reporting infrastructure | [`FeedbackConsumers.cs`](../backend/services/reporting/Reporting.Infrastructure/Messaging/FeedbackConsumers.cs) call application projection handlers |
 
 Configuration:
 
 - `RabbitMQ:Host`, `Username`, `Password`
 - Tests / local without broker: `MassTransit:UseInMemory` or `UseInMemoryDatabase` triggers in-memory bus
 
-Consumer logic (submitted): insert or upsert `FeedbackFact` by `FeedbackId` — [`FeedbackSubmittedConsumer.cs`](../backend/services/reporting/Reporting.Api/Consumers/FeedbackSubmittedConsumer.cs).
+Submitted projection: insert or upsert `FeedbackFact` by `FeedbackId` in [`ProjectSubmittedFeedbackHandler`](../backend/services/reporting/Reporting.Application/UseCases/ReportHandlers.cs). The consumer only forwards the message to that handler.
 
 ### 5.3 Sequence (consumer)
 
@@ -212,7 +227,7 @@ sequenceDiagram
 
 ### 6.1 Create feedback rules
 
-FluentValidation: [`CreateFeedbackRequestValidator.cs`](../backend/services/feedback/Feedback.Api/Validation/CreateFeedbackRequestValidator.cs).
+FluentValidation: [`CreateFeedbackRequestValidator.cs`](../backend/services/feedback/Feedback.Application/Validation/CreateFeedbackRequestValidator.cs). The create handler runs it before building a `FeedbackEntry`.
 
 - Ratings 1–5; NPS 0–10
 - `VisitDate` not in the future

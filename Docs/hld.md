@@ -122,8 +122,17 @@ External systems in v1: **none** (no payment, CRM, or email providers).
 | Service | Bounded context | Persistence |
 | --- | --- | --- |
 | Identity | Users, credentials, JWT issuance, refresh rotation | `CF_Identity` |
-| Feedback | Feedback aggregate, validation, publishing domain events | `CF_Feedback` |
+| Feedback | Feedback aggregate, validation, publishing integration events | `CF_Feedback` |
 | Reporting | Read model for analytics | `CF_Reporting` |
+
+Each service is a Clean Architecture solution with four projects:
+
+- **Domain** — entities and rules, with no framework references
+- **Application** — use-case handlers, contracts, and ports
+- **Infrastructure** — EF Core, MassTransit, and ASP.NET Identity
+- **Api** — composition root and HTTP adapter
+
+The gateway stays a thin YARP host and is not split this way. Details and the dependency rule are in [Architecture — Clean Architecture inside each service](architecture.md#clean-architecture-inside-each-service).
 
 ### 6.4 Shared kernel
 

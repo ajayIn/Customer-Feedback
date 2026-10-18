@@ -522,3 +522,10 @@ D:\Customer Feedback\backend\services\feedback\Feedback.Api.Tests\bin\Debug\net1
 D:\Customer Feedback\backend\services\feedback\Feedback.Api.Tests\bin\Debug\net10.0\Feedback.Api.pdb
 D:\Customer Feedback\backend\services\feedback\Feedback.Api.Tests\bin\Debug\net10.0\CustomerFeedback.BuildingBlocks.pdb
 D:\Customer Feedback\backend\services\feedback\Feedback.Api.Tests\obj\Debug\net10.0\MvcTestingAppManifest.json
+D:\Customer Feedback\backend\services\feedback\Feedback.Api.Tests\obj\Debug\net10.0\Feedback.Api.Tests.sourcelink.json
+D:\Customer Feedback\backend\services\feedback\Feedback.Api.Tests\bin\Debug\net10.0\Feedback.Application.dll
+D:\Customer Feedback\backend\services\feedback\Feedback.Api.Tests\bin\Debug\net10.0\Feedback.Domain.dll
+D:\Customer Feedback\backend\services\feedback\Feedback.Api.Tests\bin\Debug\net10.0\Feedback.Infrastructure.dll
+D:\Customer Feedback\backend\services\feedback\Feedback.Api.Tests\bin\Debug\net10.0\Feedback.Application.pdb
+D:\Customer Feedback\backend\services\feedback\Feedback.Api.Tests\bin\Debug\net10.0\Feedback.Domain.pdb
+D:\Customer Feedback\backend\services\feedback\Feedback.Api.Tests\bin\Debug\net10.0\Feedback.Infrastructure.pdb

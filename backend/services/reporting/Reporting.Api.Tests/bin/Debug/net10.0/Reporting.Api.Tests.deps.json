@@ -1403,10 +1403,9 @@
       "Reporting.Api/1.0.0": {
         "dependencies": {
           "CustomerFeedback.BuildingBlocks": "1.0.0",
-          "MassTransit.RabbitMQ": "8.5.2",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0",
-          "Microsoft.EntityFrameworkCore.InMemory": "10.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.0"
+          "Reporting.Application": "1.0.0",
+          "Reporting.Infrastructure": "1.0.0"
         },
         "runtime": {
           "Reporting.Api.dll": {
@@ -1416,6 +1415,52 @@
         },
         "compile": {
           "Reporting.Api.dll": {}
+        }
+      },
+      "Reporting.Application/1.0.0": {
+        "dependencies": {
+          "CustomerFeedback.BuildingBlocks": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0",
+          "Reporting.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Reporting.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "Reporting.Application.dll": {}
+        }
+      },
+      "Reporting.Domain/1.0.0": {
+        "runtime": {
+          "Reporting.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "Reporting.Domain.dll": {}
+        }
+      },
+      "Reporting.Infrastructure/1.0.0": {
+        "dependencies": {
+          "MassTransit.RabbitMQ": "8.5.2",
+          "Microsoft.EntityFrameworkCore.InMemory": "10.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "10.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0",
+          "Reporting.Application": "1.0.0"
+        },
+        "runtime": {
+          "Reporting.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "Reporting.Infrastructure.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/10.0.0.0": {
@@ -3929,6 +3974,21 @@
       "sha512": ""
     },
     "Reporting.Api/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Reporting.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Reporting.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Reporting.Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

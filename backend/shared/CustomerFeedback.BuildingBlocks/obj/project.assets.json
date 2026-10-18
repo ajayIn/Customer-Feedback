@@ -753,7 +753,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ajayg\\.nuget\\packages\\": {}
+    "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget": {}
   },
   "project": {
     "version": "1.0.0",
@@ -761,7 +761,7 @@
       "projectUniqueName": "D:\\Customer Feedback\\backend\\shared\\CustomerFeedback.BuildingBlocks\\CustomerFeedback.BuildingBlocks.csproj",
       "projectName": "CustomerFeedback.BuildingBlocks",
       "projectPath": "D:\\Customer Feedback\\backend\\shared\\CustomerFeedback.BuildingBlocks\\CustomerFeedback.BuildingBlocks.csproj",
-      "packagesPath": "C:\\Users\\ajayg\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget",
       "outputPath": "D:\\Customer Feedback\\backend\\shared\\CustomerFeedback.BuildingBlocks\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [

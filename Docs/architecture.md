@@ -132,12 +132,34 @@ contracts/          # OpenAPI, events, errors — source of truth for parallel t
 frontend/           # React 19 + Vite + RTK Query + MSW
 backend/
   gateway/          # YARP
-  services/         # identity, feedback, reporting (+ xUnit tests)
+  services/         # identity, feedback, reporting
+                    # each service: Domain, Application, Infrastructure, Api, Api.Tests
   shared/           # CustomerFeedback.BuildingBlocks
 docker-compose.yml
 plan.md             # Delivery and milestone plan (not duplicated here)
 Docs/               # HLD, LLD, architecture, business doc
 ```
+
+## Clean Architecture inside each service
+
+Identity, Feedback, and Reporting each use four projects. Dependencies point inward.
+
+```mermaid
+flowchart LR
+  Api --> Application
+  Api --> Infrastructure
+  Infrastructure --> Application
+  Application --> Domain
+```
+
+| Project | Owns | Must not reference |
+| --- | --- | --- |
+| `*.Domain` | Entities and rules (`FeedbackEntry.ChangeCategory`, role names) | EF Core, ASP.NET, MassTransit, BuildingBlocks |
+| `*.Application` | Use-case handlers, request and response contracts, ports (`IFeedbackRepository`, `ITokenIssuer`) | EF Core, MassTransit, HTTP |
+| `*.Infrastructure` | EF Core, MassTransit adapters, ASP.NET Identity | The Api project |
+| `*.Api` | Composition root, authorization, minimal API routes | Domain rules and SQL |
+
+Application may use `CustomerFeedback.BuildingBlocks` for Problem Details, paging, and integration events. `ApplicationUser` stays in Identity infrastructure because it extends ASP.NET Identity’s `IdentityUser<Guid>`. Handlers are plain dependency-injection classes. HTTP routes, status codes, and JSON shapes are unchanged.
 
 ## Security architecture (v1)
 

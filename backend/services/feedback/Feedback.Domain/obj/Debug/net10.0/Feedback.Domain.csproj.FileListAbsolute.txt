@@ -1,0 +1,12 @@
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\bin\Debug\net10.0\Feedback.Domain.deps.json
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\bin\Debug\net10.0\Feedback.Domain.dll
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\bin\Debug\net10.0\Feedback.Domain.pdb
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\obj\Debug\net10.0\Feedback.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\obj\Debug\net10.0\Feedback.Domain.AssemblyInfoInputs.cache
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\obj\Debug\net10.0\Feedback.Domain.AssemblyInfo.cs
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\obj\Debug\net10.0\Feedback.Domain.csproj.CoreCompileInputs.cache
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\obj\Debug\net10.0\Feedback.Domain.sourcelink.json
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\obj\Debug\net10.0\Feedback.Domain.dll
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\obj\Debug\net10.0\refint\Feedback.Domain.dll
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\obj\Debug\net10.0\Feedback.Domain.pdb
+D:\Customer Feedback\backend\services\feedback\Feedback.Domain\obj\Debug\net10.0\ref\Feedback.Domain.dll

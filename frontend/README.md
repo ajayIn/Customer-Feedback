@@ -1,32 +1,43 @@
-# React + TypeScript + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React 19 SPA for customers and store managers. API calls go through RTK Query. Shapes match [`contracts/openapi`](../contracts/openapi).
 
-Currently, two official plugins are available:
+## Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+From this folder:
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```powershell
+npm install
+npm run dev       # http://localhost:5173
+npm run build
+npm run lint
+npm run preview
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+From the repo root, `.\scripts\start-frontend.ps1` installs dependencies if needed and starts the dev server. The Vite proxy sends `/api` to the gateway at `http://localhost:5000`.
+
+## Environment
+
+[`/.env.development`](.env.development):
+
+| Variable | Meaning |
+| --- | --- |
+| `VITE_USE_MSW` | `true` serves MSW mocks and needs no backend. `false` uses the live gateway. |
+| `VITE_API_BASE_URL` | Leave empty in dev so requests stay on the Vite origin and use the proxy. |
+
+## Routes
+
+| Path | Role | Page |
+| --- | --- | --- |
+| `/login` | Anonymous | Login |
+| `/register` | Anonymous | Customer registration |
+| `/feedback/new` | Customer | Submit feedback |
+| `/feedback/mine` | Customer | Own submissions |
+| `/` | Store manager | Dashboard summary |
+| `/manager/feedback` | Store manager | List, recategorize, change status |
+
+Unauthenticated users are sent to `/login`. The access token stays in memory. The refresh token is stored in `localStorage` for v1.
+
+## Mocks
+
+Handlers are in `src/mocks/handlers.ts` and follow the same paths and error envelope as the OpenAPI files. Turn them on with `VITE_USE_MSW=true` when the gateway is not running.

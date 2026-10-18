@@ -79,14 +79,14 @@ contracts/
 frontend/                      # React 19 + Vite + RTK
 backend/
   gateway/                     # YARP
-  services/identity
-  services/feedback
-  services/reporting
+  services/identity            # Domain, Application, Infrastructure, Api
+  services/feedback            # Domain, Application, Infrastructure, Api
+  services/reporting           # Domain, Application, Infrastructure, Api
   shared/                      # logging, auth, errors, pagination
 docker-compose.yml             # SQL Server, RabbitMQ, services, frontend
 ```
 
-Do not scaffold apps until implementation is requested. Contracts land before controllers or feature UI.
+Do not scaffold apps until implementation is requested. Contracts land before API hosts or feature UI.
 
 ## Domain (v1)
 
@@ -237,8 +237,9 @@ Access token in memory (Redux). Refresh token: document **temporary** `localStor
 
 ### Stack per service
 
-- ASP.NET Core Web API (.NET 10)
-- EF Core + SQL Server + migrations owned by that service
+- ASP.NET Core minimal APIs (.NET 10), one host project per service
+- Clean Architecture projects: Domain, Application, Infrastructure, Api
+- EF Core + SQL Server in Infrastructure; schema applied with `EnsureCreated` in v1
 - Serilog structured JSON (`INFO`, `DEBUG`, `ERROR`) + correlation / `traceId`
 - FluentValidation on commands
 - Global exception middleware → Problem Details
@@ -328,7 +329,7 @@ Local FE without compose: Vite proxy `/api` → `https://localhost:5000`. MSW us
 | 4 | Integration | Both | FE against Gateway; OpenAPI diff in CI; no contract drift |
 | 5 | Hardening | Both | Correlation IDs, indexes, basic load test (k6 or NBomber), analyzers (Sonar-style) |
 
-No feature UI or controllers until milestone 1 files exist.
+No feature UI or API hosts until milestone 1 files exist.
 
 ## Technical expectations (from spec)
 

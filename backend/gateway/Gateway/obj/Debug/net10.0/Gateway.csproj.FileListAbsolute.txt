@@ -51,3 +51,4 @@ D:\Customer Feedback\backend\gateway\Gateway\bin\Debug\net10.0\CustomerFeedback.
 D:\Customer Feedback\backend\gateway\Gateway\bin\Debug\net10.0\CustomerFeedback.BuildingBlocks.pdb
 D:\Customer Feedback\backend\gateway\Gateway\obj\Debug\net10.0\Gateway.csproj.AssemblyReference.cache
 D:\Customer Feedback\backend\gateway\Gateway\obj\Debug\net10.0\Gateway.csproj.Up2Date
+D:\Customer Feedback\backend\gateway\Gateway\obj\Debug\net10.0\Gateway.sourcelink.json

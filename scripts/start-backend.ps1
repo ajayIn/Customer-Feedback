@@ -18,12 +18,10 @@ function Start-ServiceWindow {
         [int]$Port
     )
     $project = Join-Path $repo $ProjectPath
-    $args = @(
-        "run", "--no-build", "--no-launch-profile",
-        "--urls", "http://localhost:$Port",
-        "--project", $project
-    )
-    Start-Process -FilePath "dotnet" -ArgumentList $args -WorkingDirectory $repo -WindowStyle Normal
+    # Pass one command line. Start-Process splits an argument array on spaces,
+    # which breaks the repo path ("Customer Feedback").
+    $argumentList = "run --no-build --no-launch-profile --urls `"http://localhost:$Port`" --project `"$project`""
+    Start-Process -FilePath "dotnet" -ArgumentList $argumentList -WorkingDirectory $repo -WindowStyle Normal
     Write-Host "Started $Title on http://localhost:$Port"
 }
 

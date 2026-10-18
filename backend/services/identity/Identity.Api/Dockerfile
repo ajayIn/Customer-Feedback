@@ -2,6 +2,9 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY backend/CustomerFeedback.slnx backend/
 COPY backend/shared/CustomerFeedback.BuildingBlocks/ backend/shared/CustomerFeedback.BuildingBlocks/
+COPY backend/services/identity/Identity.Domain/ backend/services/identity/Identity.Domain/
+COPY backend/services/identity/Identity.Application/ backend/services/identity/Identity.Application/
+COPY backend/services/identity/Identity.Infrastructure/ backend/services/identity/Identity.Infrastructure/
 COPY backend/services/identity/Identity.Api/ backend/services/identity/Identity.Api/
 RUN dotnet restore backend/services/identity/Identity.Api/Identity.Api.csproj
 RUN dotnet publish backend/services/identity/Identity.Api/Identity.Api.csproj -c Release -o /app/publish

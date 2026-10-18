@@ -10,3 +10,4 @@ D:\Customer Feedback\backend\shared\CustomerFeedback.BuildingBlocks\obj\Debug\ne
 D:\Customer Feedback\backend\shared\CustomerFeedback.BuildingBlocks\obj\Debug\net10.0\refint\CustomerFeedback.BuildingBlocks.dll
 D:\Customer Feedback\backend\shared\CustomerFeedback.BuildingBlocks\obj\Debug\net10.0\CustomerFeedback.BuildingBlocks.pdb
 D:\Customer Feedback\backend\shared\CustomerFeedback.BuildingBlocks\obj\Debug\net10.0\ref\CustomerFeedback.BuildingBlocks.dll
+D:\Customer Feedback\backend\shared\CustomerFeedback.BuildingBlocks\obj\Debug\net10.0\CustomerFeedback.BuildingBlocks.sourcelink.json

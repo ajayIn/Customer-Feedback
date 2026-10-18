@@ -1941,11 +1941,9 @@
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "CustomerFeedback.BuildingBlocks": "1.0.0",
-          "FluentValidation.DependencyInjectionExtensions": "12.0.0",
-          "MassTransit.RabbitMQ": "8.5.2",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0",
-          "Microsoft.EntityFrameworkCore.InMemory": "10.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.0"
+          "Feedback.Application": "1.0.0",
+          "Feedback.Infrastructure": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0"
         },
         "compile": {
           "bin/placeholder/Feedback.Api.dll": {}
@@ -1956,6 +1954,48 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Feedback.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "CustomerFeedback.BuildingBlocks": "1.0.0",
+          "Feedback.Domain": "1.0.0",
+          "FluentValidation.DependencyInjectionExtensions": "12.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Feedback.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Feedback.Application.dll": {}
+        }
+      },
+      "Feedback.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/Feedback.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Feedback.Domain.dll": {}
+        }
+      },
+      "Feedback.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Feedback.Application": "1.0.0",
+          "MassTransit.RabbitMQ": "8.5.2",
+          "Microsoft.EntityFrameworkCore.InMemory": "10.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "10.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Feedback.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Feedback.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -4536,6 +4576,21 @@
       "type": "project",
       "path": "../Feedback.Api/Feedback.Api.csproj",
       "msbuildProject": "../Feedback.Api/Feedback.Api.csproj"
+    },
+    "Feedback.Application/1.0.0": {
+      "type": "project",
+      "path": "../Feedback.Application/Feedback.Application.csproj",
+      "msbuildProject": "../Feedback.Application/Feedback.Application.csproj"
+    },
+    "Feedback.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Feedback.Domain/Feedback.Domain.csproj",
+      "msbuildProject": "../Feedback.Domain/Feedback.Domain.csproj"
+    },
+    "Feedback.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Feedback.Infrastructure/Feedback.Infrastructure.csproj",
+      "msbuildProject": "../Feedback.Infrastructure/Feedback.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4549,7 +4604,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ajayg\\.nuget\\packages\\": {}
+    "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget": {}
   },
   "project": {
     "version": "1.0.0",
@@ -4557,7 +4612,7 @@
       "projectUniqueName": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Api.Tests\\Feedback.Api.Tests.csproj",
       "projectName": "Feedback.Api.Tests",
       "projectPath": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Api.Tests\\Feedback.Api.Tests.csproj",
-      "packagesPath": "C:\\Users\\ajayg\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget",
       "outputPath": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Api.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [

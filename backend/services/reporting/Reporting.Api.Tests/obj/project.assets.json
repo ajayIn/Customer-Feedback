@@ -1924,10 +1924,9 @@
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "CustomerFeedback.BuildingBlocks": "1.0.0",
-          "MassTransit.RabbitMQ": "8.5.2",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0",
-          "Microsoft.EntityFrameworkCore.InMemory": "10.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.0"
+          "Reporting.Application": "1.0.0",
+          "Reporting.Infrastructure": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Reporting.Api.dll": {}
@@ -1938,6 +1937,49 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Reporting.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "CustomerFeedback.BuildingBlocks": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0",
+          "Reporting.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Reporting.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Reporting.Application.dll": {}
+        }
+      },
+      "Reporting.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/Reporting.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Reporting.Domain.dll": {}
+        }
+      },
+      "Reporting.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "MassTransit.RabbitMQ": "8.5.2",
+          "Microsoft.EntityFrameworkCore.InMemory": "10.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "10.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0",
+          "Reporting.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Reporting.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Reporting.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -4503,6 +4545,21 @@
       "type": "project",
       "path": "../Reporting.Api/Reporting.Api.csproj",
       "msbuildProject": "../Reporting.Api/Reporting.Api.csproj"
+    },
+    "Reporting.Application/1.0.0": {
+      "type": "project",
+      "path": "../Reporting.Application/Reporting.Application.csproj",
+      "msbuildProject": "../Reporting.Application/Reporting.Application.csproj"
+    },
+    "Reporting.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Reporting.Domain/Reporting.Domain.csproj",
+      "msbuildProject": "../Reporting.Domain/Reporting.Domain.csproj"
+    },
+    "Reporting.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Reporting.Infrastructure/Reporting.Infrastructure.csproj",
+      "msbuildProject": "../Reporting.Infrastructure/Reporting.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4517,7 +4574,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ajayg\\.nuget\\packages\\": {}
+    "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget": {}
   },
   "project": {
     "version": "1.0.0",
@@ -4525,7 +4582,7 @@
       "projectUniqueName": "D:\\Customer Feedback\\backend\\services\\reporting\\Reporting.Api.Tests\\Reporting.Api.Tests.csproj",
       "projectName": "Reporting.Api.Tests",
       "projectPath": "D:\\Customer Feedback\\backend\\services\\reporting\\Reporting.Api.Tests\\Reporting.Api.Tests.csproj",
-      "packagesPath": "C:\\Users\\ajayg\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget",
       "outputPath": "D:\\Customer Feedback\\backend\\services\\reporting\\Reporting.Api.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [

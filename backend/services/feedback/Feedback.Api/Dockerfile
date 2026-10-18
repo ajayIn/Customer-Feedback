@@ -1,6 +1,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY backend/shared/CustomerFeedback.BuildingBlocks/ backend/shared/CustomerFeedback.BuildingBlocks/
+COPY backend/services/feedback/Feedback.Domain/ backend/services/feedback/Feedback.Domain/
+COPY backend/services/feedback/Feedback.Application/ backend/services/feedback/Feedback.Application/
+COPY backend/services/feedback/Feedback.Infrastructure/ backend/services/feedback/Feedback.Infrastructure/
 COPY backend/services/feedback/Feedback.Api/ backend/services/feedback/Feedback.Api/
 RUN dotnet restore backend/services/feedback/Feedback.Api/Feedback.Api.csproj
 RUN dotnet publish backend/services/feedback/Feedback.Api/Feedback.Api.csproj -c Release -o /app/publish
