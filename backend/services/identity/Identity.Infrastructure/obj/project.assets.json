@@ -2113,7 +2113,8 @@
           "FluentValidation": "12.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0",
           "Serilog.AspNetCore": "9.0.0",
-          "Serilog.Formatting.Compact": "3.0.0"
+          "Serilog.Formatting.Compact": "3.0.0",
+          "Serilog.Sinks.File": "6.0.0"
         },
         "compile": {
           "bin/placeholder/CustomerFeedback.BuildingBlocks.dll": {}
@@ -5325,7 +5326,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget": {}
+    "C:\\Users\\ajayg\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -5333,7 +5334,7 @@
       "projectUniqueName": "D:\\Customer Feedback\\backend\\services\\identity\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
       "projectName": "Identity.Infrastructure",
       "projectPath": "D:\\Customer Feedback\\backend\\services\\identity\\Identity.Infrastructure\\Identity.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget",
+      "packagesPath": "C:\\Users\\ajayg\\.nuget\\packages\\",
       "outputPath": "D:\\Customer Feedback\\backend\\services\\identity\\Identity.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [

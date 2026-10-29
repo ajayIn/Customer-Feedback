@@ -10,7 +10,7 @@
         "projectUniqueName": "D:\\Customer Feedback\\backend\\services\\reporting\\Reporting.Domain\\Reporting.Domain.csproj",
         "projectName": "Reporting.Domain",
         "projectPath": "D:\\Customer Feedback\\backend\\services\\reporting\\Reporting.Domain\\Reporting.Domain.csproj",
-        "packagesPath": "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget",
+        "packagesPath": "C:\\Users\\ajayg\\.nuget\\packages\\",
         "outputPath": "D:\\Customer Feedback\\backend\\services\\reporting\\Reporting.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [

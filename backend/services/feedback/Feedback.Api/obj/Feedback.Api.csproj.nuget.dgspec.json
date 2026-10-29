@@ -10,7 +10,7 @@
         "projectUniqueName": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Api\\Feedback.Api.csproj",
         "projectName": "Feedback.Api",
         "projectPath": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Api\\Feedback.Api.csproj",
-        "packagesPath": "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget",
+        "packagesPath": "C:\\Users\\ajayg\\.nuget\\packages\\",
         "outputPath": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -504,7 +504,7 @@
         "projectUniqueName": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Application\\Feedback.Application.csproj",
         "projectName": "Feedback.Application",
         "projectPath": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Application\\Feedback.Application.csproj",
-        "packagesPath": "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget",
+        "packagesPath": "C:\\Users\\ajayg\\.nuget\\packages\\",
         "outputPath": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -852,7 +852,7 @@
         "projectUniqueName": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Domain\\Feedback.Domain.csproj",
         "projectName": "Feedback.Domain",
         "projectPath": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Domain\\Feedback.Domain.csproj",
-        "packagesPath": "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget",
+        "packagesPath": "C:\\Users\\ajayg\\.nuget\\packages\\",
         "outputPath": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -1187,7 +1187,7 @@
         "projectUniqueName": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Infrastructure\\Feedback.Infrastructure.csproj",
         "projectName": "Feedback.Infrastructure",
         "projectPath": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Infrastructure\\Feedback.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget",
+        "packagesPath": "C:\\Users\\ajayg\\.nuget\\packages\\",
         "outputPath": "D:\\Customer Feedback\\backend\\services\\feedback\\Feedback.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -1550,7 +1550,7 @@
         "projectUniqueName": "D:\\Customer Feedback\\backend\\shared\\CustomerFeedback.BuildingBlocks\\CustomerFeedback.BuildingBlocks.csproj",
         "projectName": "CustomerFeedback.BuildingBlocks",
         "projectPath": "D:\\Customer Feedback\\backend\\shared\\CustomerFeedback.BuildingBlocks\\CustomerFeedback.BuildingBlocks.csproj",
-        "packagesPath": "C:\\Users\\ajayg\\AppData\\Local\\Temp\\cursor-sandbox-cache\\4dbe14c832f4132fc27fc53ede5d6634\\nuget",
+        "packagesPath": "C:\\Users\\ajayg\\.nuget\\packages\\",
         "outputPath": "D:\\Customer Feedback\\backend\\shared\\CustomerFeedback.BuildingBlocks\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -1601,6 +1601,10 @@
             "Serilog.Formatting.Compact": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [
